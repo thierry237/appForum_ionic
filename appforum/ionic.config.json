@@ -1,0 +1,7 @@
+{
+  "name": "appforum",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
