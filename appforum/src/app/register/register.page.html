@@ -1,0 +1,57 @@
+<ion-header class="ion-text-center">
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+  <h6>Inscription</h6>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="6">
+        <ion-list>
+          <ion-item>
+            <ion-label position="floating">Nom</ion-label>
+            <ion-input type="text" [(ngModel)]="form.lastname" name="lastname" placeholder="thierry"
+              required></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Prénom</ion-label>
+            <ion-input type="text" [(ngModel)]="form.firstname" name="firstname" placeholder="joel"
+              required></ion-input>
+          </ion-item>
+
+          <ion-col size-md="4" offset-md="4">
+            <ion-item>
+              <ion-label position="floating">Nom d'utilisateur</ion-label>
+              <ion-input type="text" [(ngModel)]="form.username" name="username" placeholder="thier@45" minlength="3"
+                maxlength="14" required></ion-input>
+            </ion-item>
+            <p class="error-message" *ngIf="username_error">{{ username_error }}</p>
+          </ion-col>
+
+          <ion-item>
+            <ion-label position="floating">Adresse e-mail</ion-label>
+            <ion-input type="email" [(ngModel)]="form.email" name="email" placeholder="thierry@gmail.com"
+              required></ion-input>
+          </ion-item>
+          <p class="error-message" *ngIf="email_error">{{ email_error }}</p>
+
+          <ion-item>
+            <ion-label position="floating">Mot de passe</ion-label>
+            <ion-input type="password" [(ngModel)]="form.password" name="password" minlength="4" maxlength="8"
+              required></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <ion-button expand="full" (click)="onSubmit()">S'inscrire</ion-button>
+
+        <div class="success-message" *ngIf="inscriptionValide">
+          Inscription réussie !
+          <a [routerLink]="['/login']">Retour à la page de connexion</a>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,51 @@
+<!-- home.page.html -->
+<ion-header class="ion-text-center">
+  <ion-toolbar>
+    <ion-title>
+      {{ title }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid class="ion-text-center">
+    <ion-row>
+      <ion-col size-md="4" offset-md="4">
+        <ion-item>
+          <ion-label position="floating"><ion-icon name="mail"></ion-icon> Adresse e-mail</ion-label>
+          <ion-input type="email" [(ngModel)]="form.email" name="email" required></ion-input>
+        </ion-item>
+        <p class="error-message" *ngIf="email_error">{{ email_error }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="4" offset-md="4">
+        <ion-item>
+          <ion-label position="floating"><ion-icon name="key"></ion-icon> Mot de passe</ion-label>
+          <ion-input type="password" [(ngModel)]="form.password" name="password" required minlength="3"
+            maxlength="15"></ion-input>
+        </ion-item>
+        <p class="error-message" *ngIf="password_error">{{ password_error }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="4" offset-md="4">
+        <ion-button expand="full" (click)="onSubmit()">Connexion</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="4" offset-md="4">
+        <p class="forgot-password-link">
+          <a>Mot de passe oublié ?</a>
+        </p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-md="4" offset-md="4">
+        <p class="register-link">
+          Nouveau sur appForum ? <a [routerLink]="['/register']">Créer un compte</a>
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

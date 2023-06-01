@@ -24,18 +24,28 @@ const routes: Routes = [
   //     .then(m => m.UserModule), canActivate: [AuthGuard]
   // },
   {
-    path: 'home',
+    path: '',
     loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
+
     path: 'course',
-    loadChildren: () => import('./course/course.module').then( m => m.CoursePageModule)
+    loadChildren: () => import('./course/course.module').then(m => m.CoursePageModule)
   },
+  {
+    path: 'user',
+    loadChildren: () => import('./user/user.module').then(m => m.UserPageModule)
+  },
+
+  {
+    path: 'register',
+    loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
+  },
+
 ];
 
 @NgModule({
