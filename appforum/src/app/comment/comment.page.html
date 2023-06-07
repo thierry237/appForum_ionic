@@ -72,7 +72,7 @@
               color="danger">
               <ion-icon name="trash"></ion-icon>
             </ion-button>
-            <ion-button [routerLink]="['editComment', comment.idComment]" *ngIf="idUser === comment.idUser">
+            <ion-button [routerLink]="['edit-comment', comment.idComment]" *ngIf="idUser === comment.idUser">
               <ion-icon name="pencil"></ion-icon>
             </ion-button>
           </ion-buttons>

@@ -1,0 +1,53 @@
+<ion-content>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card shadow-lg">
+          <div class="card-body p-5">
+            <h5 class="ion-text-center">Modifier le post</h5>
+            <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && editPost()">
+              <ion-item class="mb-3">
+                <ion-label position="floating">Titre du post</ion-label>
+                <ion-input type="text" name="title" [(ngModel)]="post.title" #title="ngModel" required></ion-input>
+                <div class="form_errors" *ngIf="title.errors && f.submitted">Titre requis</div>
+              </ion-item>
+              <ion-item class="mb-3">
+                <ion-label position="floating">Contenu</ion-label>
+                <ion-textarea name="message" [(ngModel)]="post.message" #message="ngModel" required></ion-textarea>
+                <div class="form_errors" *ngIf="message.errors && f.submitted">Contenu requis</div>
+              </ion-item>
+              <ion-button expand="full" type="submit" class="ion-margin-bottom">
+                <ion-icon name="add-circle-fill"></ion-icon> Valider
+              </ion-button>
+              <ion-button expand="full" fill="clear" (click)="onReturnPost()"
+                class="ion-margin-start ion-margin-bottom">
+                <ion-icon name="close-circle-fill"></ion-icon> Annuler
+              </ion-button>
+              <hr class="my-4">
+
+              <!-- Message de confirmation de modification du post -->
+              <div class="alert alert-success mt-3" *ngIf="modificationValide">
+                Post modifié !
+                <a (click)="onReturnPost()" class="alert-link">Retour à la liste des posts</a>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="message_auth">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        {{message_auth}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <a [routerLink]="['/login']">connexion</a>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

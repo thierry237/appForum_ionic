@@ -1,0 +1,33 @@
+<ion-content>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card shadow-lg">
+          <div class="card-body p-5">
+            <h5 class="ion-text-center"><ion-icon name="sticky"></ion-icon>Modifier le commentaire</h5>
+            <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && editComment()">
+              <ion-item>
+                <ion-label for="comment" class="form-label ion-text-bold">Commentaire :</ion-label>
+                <br>
+                <ion-textarea name="comment" [(ngModel)]="comments.comment" #comment="ngModel" rows="8"
+                  required></ion-textarea>
+                <div class="form_errors" *ngIf="comment.errors && f.submitted">Commentaire requis</div>
+              </ion-item>
+              <ion-button type="submit" expand="full" class="ion-margin-top"><ion-icon
+                  name="checkmark-circle"></ion-icon> Valider</ion-button>
+              <ion-button type="button" (click)="onReturnComment()" expand="full" color="danger"
+                class="ion-margin-top"><ion-icon name="close-circle-fill"></ion-icon> Annuler</ion-button>
+              <hr class="my-4">
+
+              <!-- Message de confirmation de modification -->
+              <div class="alert alert-success mt-3" *ngIf="modificationValide">
+                Commentaire modifié !
+                <a (click)="onReturnComment()" class="alert-link">Retour à la liste des commentaires</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

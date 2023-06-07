@@ -126,6 +126,8 @@ export class CoursePage implements OnInit {
     this.router.navigate(['/post'], { queryParams: { idCourse: idCourse } });
   }
 
+
+
   searchCourseAPI() {
     this.courseservice.filterCourse(this.searchCourse).subscribe(
       data => {
@@ -177,7 +179,7 @@ export class CoursePage implements OnInit {
 
   editUser() {
     console.log(this.idUser)
-    this.router.navigate(['/user/edit/', this.idUser])
+    this.router.navigate(['/course/edit-user/', this.idUser])
   }
 
   logoutUser() {

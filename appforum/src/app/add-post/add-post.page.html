@@ -1,0 +1,46 @@
+<ion-content *ngIf="!message_auth">
+  <div class="container mt-5">
+    <div class="ion-padding">
+      <h5 class="ion-text-center"><ion-icon name="sticky"></ion-icon> Ajouter un post</h5>
+      <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Titre du post</ion-label>
+          <ion-input type="text" name="title" [(ngModel)]="post.title" #title="ngModel" required></ion-input>
+        </ion-item>
+        <div class="form_errors" *ngIf="title.errors && f.submitted">Titre requis</div>
+
+        <ion-item>
+          <ion-label position="floating">Question</ion-label>
+          <ion-textarea name="message" [(ngModel)]="post.message" #message="ngModel" rows="6" required></ion-textarea>
+        </ion-item>
+        <div class="form_errors" *ngIf="message.errors && f.submitted">Contenu requis</div>
+
+        <ion-button expand="full" type="submit" color="primary" class="ion-margin-top">
+          <ion-icon name="add-circle"></ion-icon> Ajouter
+        </ion-button>
+        <ion-button expand="full" (click)="returnListPost()" color="danger" class="ion-margin-top">
+          <ion-icon name="close-circle"></ion-icon> Annuler
+        </ion-button>
+
+        <div color="success" *ngIf="ajoutValide">
+          <ion-label>Post ajouté !</ion-label>
+          <a (click)="returnListPost()" class="alert-link">Retour à la liste des posts</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="message_auth">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        {{message_auth}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <a [routerLink]="['/login']">Connexion</a>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
