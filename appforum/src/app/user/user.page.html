@@ -31,44 +31,35 @@
         <ion-searchbar [(ngModel)]="searchUser" placeholder="Recherche un Utilisateur"
           (ngModelChange)="onSearchChange()"></ion-searchbar>
       </ion-col>
-      <ion-col size="16">
-        <ion-button (click)="searchUserAPI()">Rechercher</ion-button>
+      <ion-col size="4">
+        <ion-button (click)="searchUserAPI()" expand="full">
+          Rechercher
+        </ion-button>
       </ion-col>
     </ion-row>
 
-
-    <ion-row class="horizontal-cards">
-      <ion-col size="12" *ngFor="let user of users">
-        <ion-card class="mt-3">
-          <ion-card-content>
-            <ion-item>
-              <ion-icon name="person-vcard"></ion-icon>
-              <ion-label>
-                <h3>{{ user.lastname }} {{ user.firstname }}</h3>
-                <p class="text-muted">Nom & Prénom</p>
-              </ion-label>
-            </ion-item>
-
+    <ion-content>
+      <ion-list>
+        <ion-item *ngFor="let user of users">
+          <ion-label>
+            <h3>{{ user.lastname }} {{ user.firstname }}</h3>
+            <p class="text-muted">Nom & Prénom</p>
             <p class="text-muted">
-              <ion-icon name="person-circle"></ion-icon>
               {{ user.username }} | inscrit le {{ user.createdAt | date:'EEEE d MMMM y à HH:mm':'fr-FR' }}
             </p>
-          </ion-card-content>
-
-          <ion-row class="card-footer">
-            <ion-col>
-              <ion-button *ngIf="user.idUser!==undefined && isAdmin" (click)="deleteUser(user.idUser)" color="danger">
-                <ion-icon name="trash"></ion-icon>
-              </ion-button>
-              <ion-button *ngIf="user.idUser!==undefined && isAdmin" (click)="addAdmin(user.idUser)"
-                [color]="user.isAdmin ? 'success' : 'secondary'">
-                <ion-icon name="person-fill-check"></ion-icon>
-                admin:<ion-checkbox [(ngModel)]="user.isAdmin"></ion-checkbox>
-              </ion-button>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button *ngIf="user.idUser !== undefined && isAdmin" (click)="deleteUser(user.idUser)" color="danger">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="user.idUser !== undefined && isAdmin" (click)="addAdmin(user.idUser)"
+              [color]="user.isAdmin ? 'success' : 'secondary'">
+              <ion-icon name="person-fill-check"></ion-icon>
+              admin:<ion-checkbox [(ngModel)]="user.isAdmin"></ion-checkbox>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-content>
   </div>
 </ion-content>

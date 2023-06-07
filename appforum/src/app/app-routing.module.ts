@@ -47,7 +47,19 @@ const routes: Routes = [
   },
   {
     path: 'post',
-    loadChildren: () => import('./post/post.module').then( m => m.PostPageModule)
+    loadChildren: () => import('./post/post.module').then(m => m.PostPageModule)
+  },
+  {
+    path: 'comment',
+    loadChildren: () => import('./comment/comment.module').then(m => m.CommentPageModule)
+  },
+  {
+    path: 'course/add',
+    loadChildren: () => import('./add-course/add-course.module').then(m => m.AddCoursePageModule)
+  },
+  {
+    path: 'course/edit-course/:id',
+    loadChildren: () => import('./edit-course/edit-course.module').then(m => m.EditCoursePageModule)
   },
 
 ];

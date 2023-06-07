@@ -1,0 +1,51 @@
+<ion-content *ngIf="!message_auth">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-5">
+        <div class="card shadow-lg">
+          <div class="card-body p-5">
+            <h5 class="text-center mb-4">modification du cours</h5>
+            <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && updateCourse()">
+              <div class="mb-3">
+                <ion-label for="name">Nom du cours</ion-label>
+                <ion-input type="text" name="name" [(ngModel)]="course.name" #name="ngModel"
+                  (ionChange)="clearUsernameError()" required></ion-input>
+                <div class="form_errors" *ngIf="message_error">cours existe déjà</div>
+                <div class="form_errors" *ngIf="name.errors && f.submitted">nom requis</div>
+              </div>
+              <div class="mb-3">
+                <ion-label for="description">Description</ion-label>
+                <ion-textarea name="description" [(ngModel)]="course.description" #description="ngModel" rows="6"
+                  required></ion-textarea>
+                <div class="form_errors" *ngIf="description.errors && f.submitted">description requise</div>
+              </div>
+              <ion-button expand="full" type="submit" color="primary" class="w-40 mb-3 me-2">
+                <ion-icon name="checkmark-circle"></ion-icon> Valider
+              </ion-button>
+              <ion-button expand="full" [routerLink]="['/course']" color="danger" class="w-40 mb-3 ml-3">
+                <ion-icon name="close-circle"></ion-icon> Annuler
+              </ion-button>
+            </form>
+            <div class="alert alert-success mt-3" *ngIf="modificationValide">
+              cours modifié !
+              <a [routerLink]="['/course']" class="alert-link">Retour à la liste des cours</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-content *ngIf="message_auth">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        {{message_auth}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <a [routerLink]="['/login']">connexion</a>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

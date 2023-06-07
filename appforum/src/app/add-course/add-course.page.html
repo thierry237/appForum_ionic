@@ -1,0 +1,51 @@
+<ion-content *ngIf="message_auth">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        {{message_auth}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <a [routerLink]="['/login']">connexion</a>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<ion-content *ngIf="!message_auth">
+  <div class="container mt-5">
+    <div class="ion-padding">
+      <h5 class="ion-text-center"><ion-icon name="book"></ion-icon> Ajouter un cours</h5>
+      <ion-list>
+        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()">
+          <ion-item>
+            <ion-label position="floating">Nom du cours</ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="course.name" #name="ngModel"
+              (ionChange)="clearUsernameError()" required></ion-input>
+          </ion-item>
+          <div class="form_errors" *ngIf="message_error">Ce cours existe déjà</div>
+          <div class="form_errors" *ngIf="name.errors && f.submitted">Nom requis</div>
+
+          <ion-item>
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea name="description" [(ngModel)]="course.description" #description="ngModel" rows="6"
+              required></ion-textarea>
+          </ion-item>
+          <div class="form_errors" *ngIf="description.errors && f.submitted">Description requise</div>
+
+          <ion-button expand="full" type="submit" color="primary" class="ion-margin-top"><ion-icon
+              name="add-circle"></ion-icon> Ajouter</ion-button>
+          <ion-button expand="full" [routerLink]="['/course']" color="danger" class="ion-margin-top"><ion-icon
+              name="close-circle"></ion-icon> Annuler</ion-button>
+
+
+          <div color="success" *ngIf="ajoutValide">
+            <ion-label>cours ajouté !</ion-label>
+            <a [routerLink]="['/course']" class="alert-link">Retour à la liste des cours</a>
+          </div>
+
+        </form>
+
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

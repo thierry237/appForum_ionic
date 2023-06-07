@@ -1,3 +1,4 @@
+<h6 *ngIf="message_error">{{message_error}} <a [routerLink]="['/login']">connexion</a></h6>
 <ion-content *ngIf="!message_error">
   <ion-menu contentId="main-content">
     <ion-header>
@@ -22,6 +23,7 @@
         <ion-item (click)="logoutUser()" class="logout-item">
           <ion-label>Déconnexion</ion-label>
         </ion-item>
+
       </ion-list>
     </ion-content>
   </ion-menu>
@@ -40,42 +42,36 @@
         <ion-searchbar [(ngModel)]="searchCourse" placeholder="Recherche"
           (ngModelChange)="onSearchChange()"></ion-searchbar>
       </ion-col>
-      <ion-col size="16">
-        <ion-button (click)="searchCourseAPI()">Rechercher</ion-button>
+      <ion-col size="4">
+        <ion-button (click)="searchCourseAPI()" expand="full">
+          Rechercher
+        </ion-button>
       </ion-col>
     </ion-row>
 
-
-    <ion-row class="ion-align-items-center">
-      <ion-col>
-        <h4>Bienvenue {{username}}!</h4>
-      </ion-col>
-    </ion-row>
-
-    <ion-row class="horizontal-cards">
-      <ion-col>
-        <ion-card *ngFor="let course of courses">
-          <ion-card-header>
-            <ion-card-title>{{course.name}}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>{{course.description}}</p>
-            <p class="text-muted">Ajouté le {{course.createdAt | date: 'd MMMM y' : 'fr-FR'}}</p>
-          </ion-card-content>
-
-          <ion-button *ngIf="course.idCourse !== undefined && isAdmin" (click)="deleteCourse(course.idCourse)"
-            color="danger">
-            <ion-icon name="trash"></ion-icon>
-          </ion-button>
-          <ion-button [routerLink]="['editCourse', course.idCourse]" *ngIf="isAdmin">
-            <ion-icon name="pencil"></ion-icon>
-          </ion-button>
-          <ion-button *ngIf="course.idCourse !== undefined" (click)="onSelect(course.idCourse)" color="primary">
-            <ion-icon name="eye"></ion-icon>
-            accéder
-          </ion-button>
-        </ion-card>
-      </ion-col>
-    </ion-row>
+    <ion-content>
+      <ion-list>
+        <ion-item *ngFor="let course of courses">
+          <ion-label>
+            <h3>{{ course.name }}</h3>
+            <p>{{ course.description }}</p>
+            <p class="text-muted">Ajouté le {{ course.createdAt | date:'d MMMM y':'fr-FR' }}</p>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button *ngIf="course.idCourse !== undefined && isAdmin" (click)="deleteCourse(course.idCourse)"
+              color="danger">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+            <ion-button [routerLink]="['edit-course', course.idCourse]" *ngIf="isAdmin">
+              <ion-icon name="pencil"></ion-icon>
+            </ion-button>
+            <ion-button *ngIf="course.idCourse !== undefined" (click)="onSelect(course.idCourse)" color="primary">
+              <ion-icon name="eye"></ion-icon>
+              accéder
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-content>
   </div>
 </ion-content>

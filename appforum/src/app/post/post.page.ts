@@ -147,6 +147,8 @@ export class PostPage implements OnInit {
     )
   }
 
+  onSearchChange() { }
+
 
   onComment(idPost: number) {
     this.router.navigate(['/comment'], { queryParams: { idPost: idPost } });
@@ -170,7 +172,7 @@ export class PostPage implements OnInit {
 
   logoutUser() {
     this.tokenservice.logout();
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
   }
 
 }
